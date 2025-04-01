@@ -1,18 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="style.css"
+    />
+  </head>
+  <body>
     <header>
-        <h1>Welcome to My Portfolio</h1>
+      <h1>Welcome to My Portfolio</h1>
+      <p>Where design meets passion, simplicity and professionalism</p>
     </header>
 
-    <section id="gallery"></section> <!-- This will be populated dynamically -->
+    <section id="gallery"></section>
+    <!-- This will be populated dynamically -->
+
+    <!-- Modal for viewing images or videos -->
+    <div
+      id="modal"
+      class="modal"
+    >
+      <span
+        class="close"
+        onclick="closeModal()"
+        >&times;</span
+      >
+
+      <!-- Image modal content -->
+      <img
+        id="modal-image"
+        class="modal-content"
+        src=""
+        alt="Expanded Image"
+      />
+
+      <!-- Video modal content -->
+      <video
+        id="modal-video"
+        class="modal-content"
+        controls
+      >
+        <source
+          id="modal-video-source"
+          src=""
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Caption for the modal content -->
+      <div
+        id="modal-caption"
+        class="caption"
+      ></div>
+    </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

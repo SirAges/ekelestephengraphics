@@ -24,12 +24,16 @@ window.onload = async () => {
       mediaElement = document.createElement("img");
       mediaElement.src = `images/${item.media}`;
       mediaElement.alt = item.title;
+      mediaElement.classList.add("clickable");
+      mediaElement.addEventListener("click", () => openModal(item)); // Event listener to open modal
     } else if (item.type === "video") {
       mediaElement = document.createElement("video");
       mediaElement.controls = true;
       const source = document.createElement("source");
       source.src = `videos/${item.media}`;
       mediaElement.appendChild(source);
+      mediaElement.classList.add("clickable");
+      mediaElement.addEventListener("click", () => openModal(item)); // Event listener to open modal
     }
 
     // Append title, description, and media to the itemDiv
@@ -41,3 +45,39 @@ window.onload = async () => {
     gallery.appendChild(itemDiv);
   });
 };
+
+// Modal functionality
+const modal = document.getElementById("modal");
+const modalImage = document.getElementById("modal-image");
+const modalCaption = document.getElementById("modal-caption");
+const modalVideo = document.getElementById("modal-video");
+
+// Function to open the modal with the selected media
+function openModal(item) {
+  modal.style.display = "block";
+  if (item.type === "image") {
+    modalImage.style.display = "block";
+    modalVideo.style.display = "none";
+    modalImage.src = `images/${item.media}`;
+    modalCaption.textContent = `${item.title}: ${item.description}`;
+  } else if (item.type === "video") {
+    modalImage.style.display = "none";
+    modalVideo.style.display = "block";
+    modalVideo.src = `videos/${item.media}`;
+    modalCaption.textContent = `${item.title}: ${item.description}`;
+  }
+}
+
+// Function to close the modal
+function closeModal() {
+  modal.style.display = "none";
+  modalImage.src = ""; // Clear the image source
+  modalVideo.src = ""; // Clear the video source
+}
+
+// Event listener for closing modal when clicking outside the modal content
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    closeModal();
+  }
+});
